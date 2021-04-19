@@ -33,8 +33,10 @@ app.get("/", (req, res) => {
 
 const { PORT } = process.env;
 
+const mongodb = mongoose.connection;
+
 mongodb.on("open", () => {
   app.listen(PORT, () => {
-    console.log(`Listening on port${PORT}`);
+    console.log(`Listening on port ${PORT}`);
   });
 });
