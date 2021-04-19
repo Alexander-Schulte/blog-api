@@ -1,5 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const db = require("./lib/db");
+const mongoose = require("mongoose");
 
 /*
   We create an express app calling
@@ -28,6 +30,11 @@ app.get("/", (req, res) => {
   We have to start the server. We make it listen on the port 4000
 
 */
-app.listen(4000, () => {
-  console.log("Listening on http://localhost:4000");
+
+const { PORT } = process.env;
+
+mongodb.on("open", () => {
+  app.listen(PORT, () => {
+    console.log(`Listening on port${PORT}`);
+  });
 });
